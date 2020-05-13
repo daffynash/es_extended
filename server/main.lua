@@ -50,6 +50,7 @@ function onPlayerJoined(playerId)
 	end
 
 	if identifier then
+<<<<<<< HEAD
 		if ESX.GetPlayerFromIdentifier(identifier) then
 			DropPlayer(playerId, ('there was an error loading your character!\nError code: identifier-active-ingame\n\nThis error is caused by a player on this server who has the same identifier as you have. Make sure you are not playing on the same Rockstar account.\n\nYour Rockstar identifier: %s'):format(identifier))
 		else
@@ -74,6 +75,21 @@ function onPlayerJoined(playerId)
 				end
 			end)
 		end
+=======
+		MySQL.Async.fetchScalar('SELECT 1 FROM users WHERE identifier = @identifier', {
+			['@identifier'] = identifier
+		}, function(result)
+			if result then
+				loadESXPlayer(identifier, playerId)
+			else
+				MySQL.Async.execute('INSERT INTO users (identifier) VALUES (@identifier)', {
+					['@identifier'] = identifier
+				}, function(rowsChanged)
+					loadESXPlayer(identifier, playerId)
+				end)
+			end
+		end)
+>>>>>>> parent of 3ba2ed1... Save accounts as encoded json text, migrate script found in development discord
 	else
 		DropPlayer(playerId, 'there was an error loading your character!\nError code: identifier-missing-ingame\n\nThe cause of this error is not known, your identifier could not be found. Please come back later or report this problem to the server administration team.')
 	end
@@ -115,9 +131,11 @@ function loadESXPlayer(identifier, playerId)
 		weight = 0
 	}
 
+	-- get accounts
 	table.insert(tasks, function(cb)
-		MySQL.Async.fetchAll('SELECT accounts, job, job_grade, `group`, loadout, position, inventory FROM users WHERE identifier = @identifier', {
+		MySQL.Async.fetchAll('SELECT name, money FROM user_accounts WHERE identifier = @identifier', {
 			['@identifier'] = identifier
+<<<<<<< HEAD
 		}, function(result)
 			local job, grade, jobObject, gradeObject = result[1].job, tostring(result[1].job_grade)
 			local foundAccounts, foundItems = {}, {}
@@ -138,8 +156,29 @@ function loadESXPlayer(identifier, playerId)
 					label = label
 				})
 			end
+=======
+		}, function(accounts)
+			for k,v in ipairs(accounts) do
+				if Config.Accounts[v.name] then
+					table.insert(userData.accounts, {
+						name  = v.name,
+						money = v.money,
+						label = Config.Accounts[v.name]
+					})
+				end
+			end
 
-			-- Job
+			cb()
+		end)
+	end)
+
+	table.insert(tasks, function(cb)
+		MySQL.Async.fetchAll('SELECT job, job_grade, `group`, loadout, position, inventory FROM users WHERE identifier = @identifier', {
+			['@identifier'] = identifier
+		}, function(result)
+			local job, grade, jobObject, gradeObject = result[1].job, tostring(result[1].job_grade)
+>>>>>>> parent of 3ba2ed1... Save accounts as encoded json text, migrate script found in development discord
+
 			if ESX.DoesJobExist(job, grade) then
 				jobObject, gradeObject = ESX.Jobs[job], ESX.Jobs[job].grades[grade]
 			else
@@ -147,6 +186,8 @@ function loadESXPlayer(identifier, playerId)
 				job, grade = 'unemployed', '0'
 				jobObject, gradeObject = ESX.Jobs[job], ESX.Jobs[job].grades[grade]
 			end
+
+			userData.job = {}
 
 			userData.job.id = jobObject.id
 			userData.job.name = jobObject.name
@@ -163,7 +204,8 @@ function loadESXPlayer(identifier, playerId)
 			if gradeObject.skin_male then userData.job.skin_male = json.decode(gradeObject.skin_male) end
 			if gradeObject.skin_female then userData.job.skin_female = json.decode(gradeObject.skin_female) end
 
-			-- Inventory
+			local foundItems = {}
+
 			if result[1].inventory and result[1].inventory ~= '' then
 				local inventory = json.decode(result[1].inventory)
 
@@ -193,11 +235,14 @@ function loadESXPlayer(identifier, playerId)
 				})
 			end
 
+<<<<<<< HEAD
 			table.sort(userData.inventory, function(a, b)
 				return a.label < b.label
 			end)
 
 			-- Group
+=======
+>>>>>>> parent of 3ba2ed1... Save accounts as encoded json text, migrate script found in development discord
 			if result[1].group then
 				userData.group = result[1].group
 			else
@@ -206,7 +251,14 @@ function loadESXPlayer(identifier, playerId)
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			-- Loadout
+=======
+			table.sort(userData.inventory, function(a, b)
+				return a.label < b.label
+			end)
+
+>>>>>>> parent of 3ba2ed1... Save accounts as encoded json text, migrate script found in development discord
 			if result[1].loadout and result[1].loadout ~= '' then
 				local loadout = json.decode(result[1].loadout)
 
@@ -246,7 +298,6 @@ function loadESXPlayer(identifier, playerId)
 				end
 			end
 
-			-- Position
 			if result[1].position and result[1].position ~= '' then
 				userData.coords = json.decode(result[1].position)
 			else
@@ -259,6 +310,7 @@ function loadESXPlayer(identifier, playerId)
 	end)
 
 	Async.parallel(tasks, function(results)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		local xPlayer = CreateExtendedPlayer(playerId, identifier, userData.group, userData.accounts, userData.inventory, userData.weight, userData.job, userData.loadout, userData.playerName, userData.coords)
 		ESX.Players[playerId] = xPlayer
@@ -288,6 +340,17 @@ function loadESXPlayer(identifier, playerId)
 						name = v,
 						money = 0,
 						label = Config.Accounts[v]
+=======
+		local xPlayer = CreateExtendedPlayer(playerId, identifier, userData.group, userData.accounts, userData.inventory, userData.job, userData.loadout, userData.playerName, userData.coords)
+
+		xPlayer.getMissingAccounts(function(missingAccounts)
+			if ESX.Table.SizeOf(missingAccounts) > 0 then
+				for name,money in pairs(missingAccounts) do
+					table.insert(xPlayer.accounts, {
+						name = name,
+						money = money,
+						label = Config.Accounts[name]
+>>>>>>> parent of 3ba2ed1... Save accounts as encoded json text, migrate script found in development discord
 					})
 				end
 
@@ -305,13 +368,21 @@ function loadESXPlayer(identifier, playerId)
 				inventory = xPlayer.getInventory(),
 				job = xPlayer.getJob(),
 				loadout = xPlayer.getLoadout(),
+<<<<<<< HEAD
 				money = xPlayer.getMoney(),
+=======
+>>>>>>> parent of 3ba2ed1... Save accounts as encoded json text, migrate script found in development discord
 				maxWeight = xPlayer.maxWeight
 			})
 
 			xPlayer.triggerEvent('esx:createMissingPickups', ESX.Pickups)
+<<<<<<< HEAD
 		end)
 >>>>>>> parent of 73a818a... Implemented adding chat suggestions
+=======
+			xPlayer.triggerEvent('esx:registerSuggestions', ESX.RegisteredCommands)
+		end)
+>>>>>>> parent of 3ba2ed1... Save accounts as encoded json text, migrate script found in development discord
 	end)
 end
 
@@ -332,6 +403,7 @@ AddEventHandler('playerDropped', function(reason)
 
 		ESX.SavePlayer(xPlayer, function()
 			ESX.Players[playerId] = nil
+			ESX.LastPlayerData[playerId] = nil
 		end)
 	end
 end)

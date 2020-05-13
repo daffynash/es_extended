@@ -214,7 +214,7 @@ ESX.RegisterServerCallback = function(name, cb)
 end
 
 ESX.TriggerServerCallback = function(name, requestId, source, cb, ...)
-	if ESX.ServerCallbacks[name] then
+	if ESX.ServerCallbacks[name] ~= nil then
 		ESX.ServerCallbacks[name](source, cb, ...)
 	else
 		print(('[es_extended] [^3WARNING^7] Server callback "%s" does not exist. Make sure that the server sided file really is loading, an error in that file might cause it to not load.'):format(name))
@@ -224,9 +224,32 @@ end
 ESX.SavePlayer = function(xPlayer, cb)
 	local asyncTasks = {}
 
+<<<<<<< HEAD
 	table.insert(asyncTasks, function(cb2)
 		MySQL.Async.execute('UPDATE users SET accounts = @accounts, job = @job, job_grade = @job_grade, `group` = @group, loadout = @loadout, position = @position, inventory = @inventory WHERE identifier = @identifier', {
 			['@accounts'] = json.encode(xPlayer.getAccounts(true)),
+=======
+	-- User accounts
+	for k,v in ipairs(xPlayer.accounts) do
+		if ESX.LastPlayerData[xPlayer.source].accounts[v.name] ~= v.money then
+			table.insert(asyncTasks, function(cb)
+				MySQL.Async.execute('UPDATE user_accounts SET money = @money WHERE identifier = @identifier AND name = @name', {
+					['@money'] = v.money,
+					['@identifier'] = xPlayer.identifier,
+					['@name'] = v.name
+				}, function(rowsChanged)
+					cb()
+				end)
+			end)
+
+			ESX.LastPlayerData[xPlayer.source].accounts[v.name] = v.money
+		end
+	end
+
+	-- Job, loadout, inventory and position
+	table.insert(asyncTasks, function(cb)
+		MySQL.Async.execute('UPDATE users SET job = @job, job_grade = @job_grade, loadout = @loadout, position = @position, inventory = @inventory WHERE identifier = @identifier', {
+>>>>>>> parent of 3ba2ed1... Save accounts as encoded json text, migrate script found in development discord
 			['@job'] = xPlayer.job.name,
 			['@job_grade'] = xPlayer.job.grade,
 <<<<<<< HEAD
@@ -250,14 +273,15 @@ ESX.SavePlayer = function(xPlayer, cb)
 	Async.parallel(asyncTasks, function(results)
 		print(('[es_extended] [^2INFO^7] Saved player "%s^7"'):format(xPlayer.getName()))
 
-		if cb then
+		if cb ~= nil then
 			cb()
 		end
 	end)
 end
 
 ESX.SavePlayers = function(cb)
-	local xPlayers, asyncTasks = ESX.GetPlayers(), {}
+	local asyncTasks = {}
+	local xPlayers   = ESX.GetPlayers()
 
 	for i=1, #xPlayers, 1 do
 		table.insert(asyncTasks, function(cb2)
@@ -268,7 +292,7 @@ ESX.SavePlayers = function(cb)
 
 	Async.parallelLimit(asyncTasks, 8, function(results)
 		print(('[es_extended] [^2INFO^7] Saved %s player(s)'):format(#xPlayers))
-		if cb then
+		if cb ~= nil then
 			cb()
 		end
 	end)
@@ -314,7 +338,7 @@ ESX.UseItem = function(source, item)
 end
 
 ESX.GetItemLabel = function(item)
-	if ESX.Items[item] then
+	if ESX.Items[item] ~= nil then
 		return ESX.Items[item].label
 	end
 end

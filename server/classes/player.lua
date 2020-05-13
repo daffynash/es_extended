@@ -83,18 +83,8 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 		return self.variables[k]
 	end
 
-	self.getAccounts = function(minimal)
-		if minimal then
-			local minimalAccounts = {}
-
-			for k,v in ipairs(self.accounts) do
-				minimalAccounts[v.name] = v.money
-			end
-
-			return minimalAccounts
-		else
-			return self.accounts
-		end
+	self.getAccounts = function()
+		return self.accounts
 	end
 
 	self.getAccount = function(account)
@@ -172,7 +162,44 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 		end
 	end
 
+<<<<<<< HEAD
 >>>>>>> parent of a2308de... Implemented starting balance, closes #537
+=======
+	self.getMissingAccounts = function(cb)
+		local missingAccounts = {}
+
+		for account,label in pairs(Config.Accounts) do
+			local found = false
+
+			for k2,v2 in ipairs(self.accounts) do
+				if account == v2.name then
+					found = true
+				end
+			end
+
+			if not found then
+				missingAccounts[account] = Config.StartingAccountMoney[account] or 0
+			end
+		end
+
+		cb(missingAccounts)
+	end
+
+	self.createMissingAccounts = function(missingAccounts, cb)
+		for name,money in pairs(missingAccounts) do
+			MySQL.Async.execute('INSERT INTO user_accounts (identifier, name, money) VALUES (@identifier, @name, @money)', {
+				['@identifier'] = self.identifier,
+				['@name'] = name,
+				['@money'] = money
+			}, function(rowsChanged)
+				if cb then
+					cb()
+				end
+			end)
+		end
+	end
+
+>>>>>>> parent of 3ba2ed1... Save accounts as encoded json text, migrate script found in development discord
 	self.setAccountMoney = function(accountName, money)
 		if money >= 0 then
 			local account = self.getAccount(accountName)

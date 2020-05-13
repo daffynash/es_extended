@@ -137,6 +137,42 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 		self.name = newName
 	end
 
+<<<<<<< HEAD
+=======
+	self.getMissingAccounts = function(cb)
+		local missingAccounts = {}
+
+		for account,label in pairs(Config.Accounts) do
+			local found = false
+
+			for k2,v2 in ipairs(self.accounts) do
+				if account == v2.name then
+					found = true
+				end
+			end
+
+			if not found then
+				table.insert(missingAccounts, account)
+			end
+		end
+
+		cb(missingAccounts)
+	end
+
+	self.createMissingAccounts = function(missingAccounts, cb)
+		for k,v in ipairs(missingAccounts) do
+			MySQL.Async.execute('INSERT INTO user_accounts (identifier, name) VALUES (@identifier, @name)', {
+				['@identifier'] = self.identifier,
+				['@name'] = v
+			}, function(rowsChanged)
+				if cb then
+					cb()
+				end
+			end)
+		end
+	end
+
+>>>>>>> parent of a2308de... Implemented starting balance, closes #537
 	self.setAccountMoney = function(accountName, money)
 		if money >= 0 then
 			local account = self.getAccount(accountName)

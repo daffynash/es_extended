@@ -30,6 +30,7 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 	end
 
 	if ESX.RegisteredCommands[name] then
+<<<<<<< HEAD
 		print(('[es_extended] [^3WARNING^7] An command "%s" is already registered, overriding command'):format(name))
 
 		if ESX.RegisteredCommands[name].suggestion then
@@ -43,12 +44,21 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 
 		TriggerClientEvent('chat:addSuggestion', -1, ('/%s'):format(name), suggestion.help, suggestion.arguments)
 	end
+=======
+		print(('[es_extended] [^3WARNING^7] An command "%s" is already registered'):format(name))
+	else
+		if suggestion then
+			if not suggestion.arguments then suggestion.arguments = {} end
+			if not suggestion.help then suggestion.help = '' end
+		end
+>>>>>>> parent of 4b648a8... Override existing commands, and fixed rare bug with cb args all nil
 
-	ESX.RegisteredCommands[name] = {group = group, cb = cb, allowConsole = allowConsole, suggestion = suggestion}
+		ESX.RegisteredCommands[name] = {group = group, cb = cb, allowConsole = allowConsole, suggestion = suggestion}
 
-	RegisterCommand(name, function(playerId, args, rawCommand)
-		local command = ESX.RegisteredCommands[name]
+		RegisterCommand(name, function(playerId, args, rawCommand)
+			local command = ESX.RegisteredCommands[name]
 
+<<<<<<< HEAD
 		if not command.allowConsole and playerId == 0 then
 			print(('[es_extended] [^3WARNING^7] %s'):format(_U('commanderror_console')))
 		else
@@ -58,17 +68,29 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 				if command.suggestion.validate then
 					if #args ~= #command.suggestion.arguments then
 						error = _U('commanderror_argumentmismatch', #args, #command.suggestion.arguments)
+=======
+			if not command.allowConsole and playerId == 0 then
+				print('[es_extended] [^3WARNING^7] That command can not be run from console')
+			else
+				local xPlayer, error = ESX.GetPlayerFromId(playerId), nil
+
+				if command.suggestion then
+					if command.suggestion.validate then
+						if #args ~= #command.suggestion.arguments then
+							error = ('Argument count mismatch (passed %s, wanted %s)'):format(#args, #command.suggestion.arguments)
+						end
+>>>>>>> parent of 4b648a8... Override existing commands, and fixed rare bug with cb args all nil
 					end
-				end
 
-				if not error and command.suggestion.arguments then
-					local newArgs = {}
+					if not error and command.suggestion.arguments then
+						local newArgs = {}
 
-					for k,v in ipairs(command.suggestion.arguments) do
-						if v.type then
-							if v.type == 'number' then
-								local newArg = tonumber(args[k])
+						for k,v in ipairs(command.suggestion.arguments) do
+							if v.type then
+								if v.type == 'number' then
+									local newArg = tonumber(args[k])
 
+<<<<<<< HEAD
 								if newArg then
 									newArgs[v.name] = newArg
 								else
@@ -81,14 +103,26 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 
 								if targetPlayer then
 									local xTargetPlayer = ESX.GetPlayerFromId(targetPlayer)
+=======
+									if newArg then
+										newArgs[v.name] = newArg
+									else
+										error = ('Argument #%s type mismatch (passed string, wanted number)'):format(k)
+									end
+								elseif v.type == 'player' then
+									local targetPlayer = tonumber(args[k])
 
-									if xTargetPlayer then
-										if v.type == 'player' then
+									if targetPlayer then
+										local xTargetPlayer = ESX.GetPlayerFromId(targetPlayer)
+>>>>>>> parent of 4b648a8... Override existing commands, and fixed rare bug with cb args all nil
+
+										if xTargetPlayer then
 											newArgs[v.name] = xTargetPlayer
 										else
-											newArgs[v.name] = targetPlayer
+											error = 'Player not online'
 										end
 									else
+<<<<<<< HEAD
 										error = _U('commanderror_invalidplayerid')
 									end
 								else
@@ -107,42 +141,62 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 									newArgs[v.name] = string.upper(args[k])
 								else
 									error = _U('commanderror_invalidweapon')
+=======
+										error = ('Argument #%s type mismatch (passed string, wanted number)'):format(k)
+									end
+								elseif v.type == 'string' then
+									newArgs[v.name] = args[k]
+								elseif v.type == 'item' then
+									if ESX.Items[args[k]] then
+										newArgs[v.name] = args[k]
+									else
+										error = _U('invalid_item')
+									end
+								elseif v.type == 'weapon' then
+									if ESX.GetWeapon(args[k]) then
+										newArgs[v.name] = string.upper(args[k])
+									else
+										error = 'Invalid weapon'
+									end
+								elseif v.type == 'any' then
+									newArgs[v.name] = args[k]
+>>>>>>> parent of 4b648a8... Override existing commands, and fixed rare bug with cb args all nil
 								end
-							elseif v.type == 'any' then
-								newArgs[v.name] = args[k]
 							end
+
+							if error then break end
 						end
 
-						if error then break end
+						args = newArgs
 					end
-
-					args = newArgs
 				end
-			end
 
-			if error then
-				if playerId == 0 then
-					print(('[es_extended] [^3WARNING^7] %s^7'):format(error))
-				else
-					xPlayer.triggerEvent('chat:addMessage', {args = {'^1SYSTEM', error}})
-				end
-			else
-				cb(xPlayer or false, args, function(msg)
+				if error then
 					if playerId == 0 then
-						print(('[es_extended] [^3WARNING^7] %s^7'):format(msg))
+						print(('[es_extended] [^3WARNING^7] %s^7'):format(error))
 					else
-						xPlayer.triggerEvent('chat:addMessage', {args = {'^1SYSTEM', msg}})
+						xPlayer.triggerEvent('chat:addMessage', {args = {'^1SYSTEM', error}})
 					end
-				end)
+				else
+					cb(xPlayer, args, function(msg)
+						if playerId == 0 then
+							print(('[es_extended] [^3WARNING^7] %s^7'):format(msg))
+						else
+							xPlayer.triggerEvent('chat:addMessage', {args = {'^1SYSTEM', msg}})
+						end
+					end)
+				end
 			end
-		end
-	end, true)
+		end, true)
 
+<<<<<<< HEAD
 	if type(group) == 'table' then
 		for k,v in ipairs(group) do
 			ExecuteCommand(('add_ace group.%s command.%s allow'):format(v, name))
 		end
 	else
+=======
+>>>>>>> parent of 4b648a8... Override existing commands, and fixed rare bug with cb args all nil
 		ExecuteCommand(('add_ace group.%s command.%s allow'):format(group, name))
 	end
 end

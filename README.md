@@ -1,6 +1,7 @@
 # es_extended
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 es_extended is a roleplay framework for FiveM. The to-go framework for creating an economy based roleplay server on FiveM and most popular on the platform, too!
 
 Featuring many extra resources to fit roleplaying servers, here's a taste of what's available:
@@ -13,6 +14,9 @@ ESX was initially developed by Gizz back in 2017 for his friend as the were crea
 =======
 es_extended is a roleplay framework for FiveM. It is developed on top of EssentialMode (aka ES), where the project ESX is originating from - the **Es**sentialMode E**x**tended framework for FiveM.
 >>>>>>> parent of 056633d... Update README.md
+=======
+es_extended is a roleplay framework for FiveM. ESX is short for **Es**sentialMode E**x**tended.
+>>>>>>> parent of e31077e... Update README.md
 
 ## Links & Read more
 

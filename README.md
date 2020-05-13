@@ -84,8 +84,11 @@ git clone https://github.com/ESX-Org/esx_menu_list [esx]/[ui]/esx_menu_list
 ```
 add_ace resource.es_extended command.add_ace allow
 add_ace resource.es_extended command.add_principal allow
+<<<<<<< HEAD
 add_ace resource.es_extended command.remove_principal allow
 add_ace resource.es_extended command.stop allow
+=======
+>>>>>>> parent of 1d60857... Fixed /setgroup command
 
 start mysql-async
 start essentialmode

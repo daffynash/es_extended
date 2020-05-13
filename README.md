@@ -1,5 +1,6 @@
 # es_extended
 
+<<<<<<< HEAD
 es_extended is a roleplay framework for FiveM. The to-go framework for creating an economy based roleplay server on FiveM and most popular on the platform, too!
 
 Featuring many extra resources to fit roleplaying servers, here's a taste of what's available:
@@ -9,6 +10,9 @@ Featuring many extra resources to fit roleplaying servers, here's a taste of wha
 - esx_vehicleshop: roleplay working in an vehicle dealership where you sell cars to players
 
 ESX was initially developed by Gizz back in 2017 for his friend as the were creating an FiveM server and there wasn't any economy roleplaying frameworks available. The original code was written within a week or two and later open sourced, it has ever since been improved and parts been rewritten to further improve on it.
+=======
+es_extended is a roleplay framework for FiveM. It is developed on top of EssentialMode (aka ES), where the project ESX is originating from - the **Es**sentialMode E**x**tended framework for FiveM.
+>>>>>>> parent of 056633d... Update README.md
 
 ## Links & Read more
 
@@ -19,17 +23,23 @@ ESX was initially developed by Gizz back in 2017 for his friend as the were crea
 ## Features
 
 - Weight based inventory system
-- Weapons support, including support for attachments and tints
-- Supports different money accounts (defaulted with cash, bank and black money)
+- Weapons support, including support for attachments
+- Supports different money accounts (defaulted with bank & black money)
 - Many official resources available in our GitHub
 - Job system, with grades and clothes support
 - Supports multiple languages, most strings are localized
+<<<<<<< HEAD
 - Easy to use API for developers to easily integrate ESX to their projects
 - Register your own commands easily, with argument validation, chat suggestion and using FXServer ACL
+=======
+- Easy to use API
+>>>>>>> parent of 056633d... Update README.md
 
 ## Requirements
 
 - [mysql-async](https://github.com/brouznouf/fivem-mysql-async)
+- [essentialmode](https://github.com/kanersps/essentialmode)
+- [esplugin_mysql](https://github.com/kanersps/esplugin_mysql)
 - [async](https://github.com/ESX-Org/async)
 
 
@@ -70,6 +80,9 @@ add_ace resource.es_extended command.remove_principal allow
 add_ace resource.es_extended command.stop allow
 
 start mysql-async
+start essentialmode
+start esplugin_mysql
+
 start es_extended
 
 start esx_menu_default

@@ -303,7 +303,42 @@ end)
 RegisterNetEvent('esx:createMissingPickups')
 AddEventHandler('esx:createMissingPickups', function(missingPickups)
 	for pickupId,pickup in pairs(missingPickups) do
+<<<<<<< HEAD
 		TriggerEvent('esx:createPickup', pickupId, pickup.label, pickup.coords, pickup.type, pickup.name, pickup.components, pickup.tintIndex)
+=======
+		local pickupObject = nil
+
+		if pickup.type == 'item_weapon' then
+			ESX.Streaming.RequestWeaponAsset(GetHashKey(pickup.name))
+			pickupObject = CreateWeaponObject(GetHashKey(pickup.name), 50, pickup.coords.x, pickup.coords.y, pickup.coords.z, true, 1.0, 0)
+			SetWeaponObjectTintIndex(pickupObject, pickup.tintIndex)
+
+			for k,componentName in ipairs(pickup.components) do
+				local component = ESX.GetWeaponComponent(pickup.name, componentName)
+				GiveWeaponComponentToWeaponObject(pickupObject, component.hash)
+			end
+		else
+			ESX.Game.SpawnLocalObject('prop_money_bag_01', pickup.coords, function(obj)
+				pickupObject = obj
+			end)
+
+			while not pickupObject do
+				Citizen.Wait(10)
+			end
+		end
+
+		SetEntityAsMissionEntity(pickupObject, true, false)
+		PlaceObjectOnGroundProperly(pickupObject)
+		FreezeEntityPosition(pickupObject, true)
+
+		pickups[pickupId] = {
+			id = pickupId,
+			obj = pickupObject,
+			label = pickup.label,
+			inRange = false,
+			coords = vector3(pickup.coords.x, pickup.coords.y, pickup.coords.z)
+		}
+>>>>>>> parent of 8a832ae... Implemented adding chat suggestions, closes #512
 	end
 end)
 

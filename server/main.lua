@@ -239,6 +239,7 @@ function loadESXPlayer(identifier, playerId)
 	end)
 
 	Async.parallel(tasks, function(results)
+<<<<<<< HEAD
 		local xPlayer = CreateExtendedPlayer(playerId, identifier, userData.group, userData.accounts, userData.inventory, userData.weight, userData.job, userData.loadout, userData.playerName, userData.coords)
 		ESX.Players[playerId] = xPlayer
 		TriggerEvent('esx:playerLoaded', playerId, xPlayer)
@@ -257,6 +258,40 @@ function loadESXPlayer(identifier, playerId)
 		xPlayer.triggerEvent('esx:createMissingPickups', ESX.Pickups)
 		xPlayer.triggerEvent('esx:registerSuggestions', ESX.RegisteredCommands)
 		print(('[es_extended] [^2INFO^7] A player with name "%s^7" has connected to the server with assigned player id %s'):format(xPlayer.getName(), playerId))
+=======
+		local xPlayer = CreateExtendedPlayer(playerId, identifier, userData.group, userData.accounts, userData.inventory, userData.job, userData.loadout, userData.playerName, userData.coords)
+
+		xPlayer.getMissingAccounts(function(missingAccounts)
+			if #missingAccounts > 0 then
+				for k,v in ipairs(missingAccounts) do
+					table.insert(xPlayer.accounts, {
+						name = v,
+						money = 0,
+						label = Config.Accounts[v]
+					})
+				end
+
+				xPlayer.createMissingAccounts(missingAccounts)
+			end
+
+			ESX.Players[playerId] = xPlayer
+			TriggerEvent('esx:playerLoaded', playerId, xPlayer)
+
+			xPlayer.triggerEvent('esx:playerLoaded', {
+				identifier = xPlayer.identifier,
+				money = xPlayer.getMoney(),
+				accounts = xPlayer.getAccounts(),
+				coords = xPlayer.getCoords(),
+				inventory = xPlayer.getInventory(),
+				job = xPlayer.getJob(),
+				loadout = xPlayer.getLoadout(),
+				money = xPlayer.getMoney(),
+				maxWeight = xPlayer.maxWeight
+			})
+
+			xPlayer.triggerEvent('esx:createMissingPickups', ESX.Pickups)
+		end)
+>>>>>>> parent of 73a818a... Implemented adding chat suggestions
 	end)
 end
 

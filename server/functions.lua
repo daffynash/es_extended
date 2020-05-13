@@ -41,8 +41,6 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 	if suggestion then
 		if not suggestion.arguments then suggestion.arguments = {} end
 		if not suggestion.help then suggestion.help = '' end
-
-		TriggerClientEvent('chat:addSuggestion', -1, ('/%s'):format(name), suggestion.help, suggestion.arguments)
 	end
 =======
 		print(('[es_extended] [^3WARNING^7] An command "%s" is already registered'):format(name))

@@ -307,15 +307,6 @@ AddEventHandler('esx:createMissingPickups', function(missingPickups)
 	end
 end)
 
-RegisterNetEvent('esx:registerSuggestions')
-AddEventHandler('esx:registerSuggestions', function(registeredCommands)
-	for name,command in pairs(registeredCommands) do
-		if command.suggestion then
-			TriggerEvent('chat:addSuggestion', ('/%s'):format(name), command.suggestion.help, command.suggestion.arguments)
-		end
-	end
-end)
-
 RegisterNetEvent('esx:removePickup')
 AddEventHandler('esx:removePickup', function(pickupId)
 	if pickups[pickupId] and pickups[pickupId].obj then

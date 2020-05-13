@@ -486,10 +486,13 @@ AddEventHandler('esx:giveInventoryItem', function(target, type, itemName, itemCo
 	elseif type == 'item_ammo' then
 		if sourceXPlayer.hasWeapon(itemName) then
 <<<<<<< HEAD
+<<<<<<< HEAD
 			local weaponNum, weapon = sourceXPlayer.getWeapon(itemName)
 
 =======
 >>>>>>> parent of 086f280... Fix give weapon ammo on esx:giveInventoryItem
+=======
+>>>>>>> parent of e067284... Merge pull request #557 from MaLaGeBe/patch-1
 			if targetXPlayer.hasWeapon(itemName) then
 				local weaponNum, weapon = sourceXPlayer.getWeapon(itemName)
 				local _, weaponObject = ESX.GetWeapon(itemName)

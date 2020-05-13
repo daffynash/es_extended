@@ -289,15 +289,9 @@ ESX.UI.ShowInventoryItemNotification = function(add, item, count)
 	})
 end
 
-ESX.Game.GetPedMugshot = function(ped, transparent)
+ESX.Game.GetPedMugshot = function(ped)
 	if DoesEntityExist(ped) then
-		local mugshot
-
-		if transparent then
-			mugshot = RegisterPedheadshotTransparent(ped)
-		else
-			mugshot = RegisterPedheadshot(ped)
-		end
+		local mugshot = RegisterPedheadshot(ped)
 
 		while not IsPedheadshotReady(mugshot) do
 			Citizen.Wait(0)

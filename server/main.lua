@@ -204,6 +204,7 @@ function loadESXPlayer(identifier, playerId)
 				userData.group = 'user'
 			end
 
+<<<<<<< HEAD
 			-- Loadout
 			if result[1].loadout and result[1].loadout ~= '' then
 				local loadout = json.decode(result[1].loadout)
@@ -223,6 +224,19 @@ function loadESXPlayer(identifier, playerId)
 							tintIndex = weapon.tintIndex
 						})
 					end
+=======
+			table.sort(userData.inventory, function(a, b)
+				return a.label < b.label
+			end)
+
+			if result[1].loadout then
+				userData.loadout = json.decode(result[1].loadout)
+
+				-- compatibility with old loadouts
+				for k,v in ipairs(userData.loadout) do
+					if not v.components then v.components = {} end
+					if not v.tintIndex then v.tintIndex = 0 end
+>>>>>>> parent of 4d9af4e... Improved saving loadouts (see desc)
 				end
 			end
 

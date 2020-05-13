@@ -54,6 +54,7 @@ Locales['en'] = {
   ['in_vehicle'] = 'you cannot give anything to someone in a vehicle',
 
   -- Commands
+<<<<<<< HEAD
   ['command_car'] = 'spawn a vehicle',
   ['command_car_car'] = 'vehicle spawn name or hash',
   ['command_cardel'] = 'delete vehicle in proximity',
@@ -100,6 +101,27 @@ Locales['en'] = {
   ['commanderror_invalidcommand'] = '^3%s^0 is not a valid command!',
   ['commanderror_invalidplayerid'] = 'there is no player online matching that server id',
   ['commandgeneric_playerid'] = 'player id',
+=======
+  ['setjob'] = 'assign a job to a user',
+  ['id_param'] = 'the ID of the player',
+  ['setjob_param2'] = 'the job you wish to assign',
+  ['setjob_param3'] = 'the job level',
+  ['spawn_car'] = 'spawn a car',
+  ['spawn_car_param'] = 'name of car',
+  ['delete_vehicle'] = 'deletes Vehicle',
+  ['invalid_account'] = 'invalid account',
+  ['account'] = 'account',
+  ['giveaccountmoney'] = 'give account money',
+  ['invalid_item'] = 'invalid item',
+  ['item'] = 'item',
+  ['giveitem'] = 'give item',
+  ['weapon'] = 'weapon',
+  ['giveweapon'] = 'give weapon',
+  ['chat_clear'] = 'clear the chat',
+  ['chat_clear_all'] = 'clear the chat for everyone',
+  ['command_clearinventory'] = 'clear all items from inventory',
+  ['command_clearloadout'] = 'remove all weapons from loadout',
+>>>>>>> parent of 4e4ebff... Re-done locale names for commands, moved hardcoded strings to locale and added /setgroup command
 
   -- Locale settings
   ['locale_digit_grouping_symbol'] = ',',

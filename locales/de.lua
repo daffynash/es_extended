@@ -55,6 +55,7 @@ Locales['de'] = {
 
   -- Commands
 <<<<<<< HEAD
+<<<<<<< HEAD
   ['command_car'] = 'spawn an vehicle',
   ['command_car_car'] = 'vehicle spawn name or hash',
   ['command_cardel'] = 'delete vehicle in proximity',
@@ -122,6 +123,27 @@ Locales['de'] = {
   ['command_clearinventory'] = 'clear all items from inventory',
   ['command_clearloadout'] = 'remove all weapons from loadout',
 >>>>>>> parent of e822960... Improved German translation (#495)
+=======
+  ['setjob'] = 'spieler Job zuweisen',
+  ['id_param'] = 'ID von Spieler',
+  ['setjob_param2'] = 'der zu vergebende Job',
+  ['setjob_param3'] = 'der Jobgrad',
+  ['spawn_car'] = 'fahrzeug spawnen',
+  ['spawn_car_param'] = 'fahrzeugname',
+  ['delete_vehicle'] = 'entfernt Fahrzeuge',
+  ['invalid_account'] = 'ungültige Anzahl',
+  ['account'] = 'bank',
+  ['giveaccountmoney'] = 'bankgeld geben',
+  ['invalid_item'] = 'ungültiges Item',
+  ['item'] = 'item',
+  ['giveitem'] = 'item geben',
+  ['weapon'] = 'waffe',
+  ['giveweapon'] = 'waffe geben',
+  ['chat_clear'] = 'chat leeren',
+  ['chat_clear_all'] = 'chat für jeden leeren',
+  ['command_clearinventory'] = 'alle Items aus dem Inventar entfernen',
+  ['command_clearloadout'] = 'alle Waffen aus dem Loadout entfernen',
+>>>>>>> parent of 4e4ebff... Re-done locale names for commands, moved hardcoded strings to locale and added /setgroup command
 
   -- Locale settings
   ['locale_digit_grouping_symbol'] = ' ',

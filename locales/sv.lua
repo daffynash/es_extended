@@ -54,14 +54,26 @@ Locales['sv'] = {
   ['in_vehicle'] = 'du kan inte ge saker till en som sitter i ett fordon!',
 
   -- Commands
-  ['command_car'] = 'spawna ett fordon',
-  ['command_car_car'] = 'namn på fordon eller hash',
-  ['command_cardel'] = 'radera fordon i närheten',
-  ['command_cardel_radius'] = 'valfri, radera alla fordon inom den angivna radien',
-  ['command_clear'] = 'töm chatten',
-  ['command_clearall'] = 'töm chatten för alla spelare',
+  ['setjob'] = 'tilldela ett jobb till en spelare',
+  ['id_param'] = 'spelarens ID',
+  ['setjob_param2'] = 'det jobb du vill tilldela',
+  ['setjob_param3'] = 'job nivå',
+  ['spawn_car'] = 'spawna ett fordon',
+  ['spawn_car_param'] = 'namn på fordon',
+  ['delete_vehicle'] = 'ta bort fordon',
+  ['invalid_account'] = 'ogiltigt konto',
+  ['account'] = 'konto',
+  ['giveaccountmoney'] = 'ge spelarkonto pengar',
+  ['invalid_item'] = 'ogiltigt föremål',
+  ['item'] = 'föremål',
+  ['giveitem'] = 'ge ett föremål',
+  ['weapon'] = 'vapen',
+  ['giveweapon'] = 'ge ett vapen',
+  ['chat_clear'] = 'töm chatten',
+  ['chat_clear_all'] = 'töm chatten för alla',
   ['command_clearinventory'] = 'töm en spelares inventory',
   ['command_clearloadout'] = 'töm en spelares loadout',
+<<<<<<< HEAD
   ['command_giveaccountmoney'] = 'ge pengar för ett konto',
   ['command_giveaccountmoney_account'] = 'giltigt kontonamn',
   ['command_giveaccountmoney_amount'] = 'mängd att ge',
@@ -100,6 +112,8 @@ Locales['sv'] = {
   ['commanderror_invalidcommand'] = '^3%s^0 är inte ett giltigt kommando!',
   ['commanderror_invalidplayerid'] = 'det finns ingen spelare som matchar det angivna server id',
   ['commandgeneric_playerid'] = 'spelarid',
+=======
+>>>>>>> parent of 4e4ebff... Re-done locale names for commands, moved hardcoded strings to locale and added /setgroup command
 
   -- Locale settings
   ['locale_digit_grouping_symbol'] = ' ',

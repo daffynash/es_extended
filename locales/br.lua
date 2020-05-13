@@ -54,14 +54,26 @@ Locales['br'] = {
   ['in_vehicle'] = 'voce não pode dar nada para alguem no veículo',
 
   -- Commands
-  ['command_car'] = 'spawn um carro',
-  ['command_car_car'] = 'nome do carro',
-  ['command_cardel'] = 'excluir veículo',
-  ['command_cardel_radius'] = 'optional, delete every vehicle within the specified radius',
-  ['command_clear'] = 'limpar o chat',
-  ['command_clearall'] = 'limpar o chat para todos',
+  ['setjob'] = 'atribuir um trabalho a um usuario',
+  ['id_param'] = 'o ID do jogador',
+  ['setjob_param2'] = 'o trabalho que voce deseja atribuir',
+  ['setjob_param3'] = 'o nivel de emprego',
+  ['spawn_car'] = 'spawn um carro',
+  ['spawn_car_param'] = 'nome do carro',
+  ['delete_vehicle'] = 'excluir veículo',
+  ['invalid_account'] = 'conta inválida',
+  ['account'] = 'conta',
+  ['giveaccountmoney'] = 'dar dinheiro da conta',
+  ['invalid_item'] = 'item invalido',
+  ['item'] = 'item',
+  ['giveitem'] = 'dar item',
+  ['weapon'] = 'arma',
+  ['giveweapon'] = 'dar arma',
+  ['chat_clear'] = 'limpar o chat',
+  ['chat_clear_all'] = 'limpar o chat para todos',
   ['command_clearinventory'] = 'remover todos os itens do inventário',
   ['command_clearloadout'] = 'remova todas as armas do carregamento',
+<<<<<<< HEAD
   ['command_giveaccountmoney'] = 'dar dinheiro da conta',
   ['command_giveaccountmoney_account'] = 'conta',
   ['command_giveaccountmoney_amount'] = 'amount',
@@ -100,6 +112,8 @@ Locales['br'] = {
   ['commanderror_invalidcommand'] = '^3%s^0 is not an valid command!',
   ['commanderror_invalidplayerid'] = 'there is no player online matching that server id',
   ['commandgeneric_playerid'] = 'o ID do jogador',
+=======
+>>>>>>> parent of 4e4ebff... Re-done locale names for commands, moved hardcoded strings to locale and added /setgroup command
 
   -- Locale settings
   ['locale_digit_grouping_symbol'] = ' ',

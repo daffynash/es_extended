@@ -54,6 +54,7 @@ Locales['cs'] = {
   ['act_imp'] = 'akce není možná',
   ['in_vehicle'] = 'nemůže nic dát osobě ve vozidle',
 
+<<<<<<< HEAD
   -- Commands
   ['command_car'] = 'spawn an vehicle',
   ['command_car_car'] = 'vehicle spawn name or hash',
@@ -105,6 +106,32 @@ Locales['cs'] = {
   -- Locale settings
   ['locale_digit_grouping_symbol'] = ' ',
   ['locale_currency'] = '$%s',
+=======
+  -- Commands 
+  ['setjob'] = 'přiřadit práci hráči', 
+  ['id_param'] = 'iD hráče', 
+  ['setjob_param2'] = 'název přiřazované práce', 
+  ['setjob_param3'] = 'úroveň práce', 
+  ['spawn_car'] = 'spawn auto', 
+  ['spawn_car_param'] = 'název auta', 
+  ['delete_vehicle'] = 'odstranit vozidlo', 
+  ['invalid_account'] = 'neplatný účet', 
+  ['account'] = 'účet', 
+  ['giveaccountmoney'] = 'dát peníze na účet', 
+  ['invalid_item'] = 'neplatná věc', 
+  ['item'] = 'věc', 
+  ['giveitem'] = 'dát věc', 
+  ['weapon'] = 'zbraň', 
+  ['giveweapon'] = 'dát zbraň', 
+  ['chat_clear'] = 'vyčistit chat', 
+  ['chat_clear_all'] = 'vyčistit chat pro všechny', 
+  ['command_clearinventory'] = 'vycistit vsechny predmety v invetari', 
+  ['command_clearloadout'] = 'odebrat vsechny zbrane z rukz', 
+
+  -- Locale settings 
+  ['locale_digit_grouping_symbol'] = ' ', 
+  ['locale_currency'] = '$%s', 
+>>>>>>> parent of 4e4ebff... Re-done locale names for commands, moved hardcoded strings to locale and added /setgroup command
 
   -- Weapons
   ['weapon_knife'] = 'nuz',

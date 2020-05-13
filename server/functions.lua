@@ -54,13 +54,14 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 
 <<<<<<< HEAD
 		if not command.allowConsole and playerId == 0 then
-			print(('[es_extended] [^3WARNING^7] %s'):format(_U('commanderror_console')))
+			print('[es_extended] [^3WARNING^7] That command can not be run from console')
 		else
 			local xPlayer, error = ESX.GetPlayerFromId(playerId), nil
 
 			if command.suggestion then
 				if command.suggestion.validate then
 					if #args ~= #command.suggestion.arguments then
+<<<<<<< HEAD
 						error = _U('commanderror_argumentmismatch', #args, #command.suggestion.arguments)
 =======
 			if not command.allowConsole and playerId == 0 then
@@ -74,6 +75,9 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 							error = ('Argument count mismatch (passed %s, wanted %s)'):format(#args, #command.suggestion.arguments)
 						end
 >>>>>>> parent of 4b648a8... Override existing commands, and fixed rare bug with cb args all nil
+=======
+						error = ('Argument count mismatch (passed %s, wanted %s)'):format(#args, #command.suggestion.arguments)
+>>>>>>> parent of 4e4ebff... Re-done locale names for commands, moved hardcoded strings to locale and added /setgroup command
 					end
 
 					if not error and command.suggestion.arguments then
@@ -88,7 +92,7 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 								if newArg then
 									newArgs[v.name] = newArg
 								else
-									error = _U('commanderror_argumentmismatch_number', k)
+									error = ('Argument #%s type mismatch (passed string, wanted number)'):format(k)
 								end
 							elseif v.type == 'player' or v.type == 'playerId' then
 								local targetPlayer = tonumber(args[k])
@@ -115,10 +119,14 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 										end
 									else
 <<<<<<< HEAD
+<<<<<<< HEAD
 										error = _U('commanderror_invalidplayerid')
+=======
+										error = 'Player not online'
+>>>>>>> parent of 4e4ebff... Re-done locale names for commands, moved hardcoded strings to locale and added /setgroup command
 									end
 								else
-									error = _U('commanderror_argumentmismatch_number', k)
+									error = ('Argument #%s type mismatch (passed string, wanted number)'):format(k)
 								end
 							elseif v.type == 'string' then
 								newArgs[v.name] = args[k]
@@ -126,12 +134,13 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 								if ESX.Items[args[k]] then
 									newArgs[v.name] = args[k]
 								else
-									error = _U('commanderror_invaliditem')
+									error = _U('invalid_item')
 								end
 							elseif v.type == 'weapon' then
 								if ESX.GetWeapon(args[k]) then
 									newArgs[v.name] = string.upper(args[k])
 								else
+<<<<<<< HEAD
 									error = _U('commanderror_invalidweapon')
 =======
 										error = ('Argument #%s type mismatch (passed string, wanted number)'):format(k)
@@ -153,6 +162,9 @@ ESX.RegisterCommand = function(name, group, cb, allowConsole, suggestion)
 								elseif v.type == 'any' then
 									newArgs[v.name] = args[k]
 >>>>>>> parent of 4b648a8... Override existing commands, and fixed rare bug with cb args all nil
+=======
+									error = 'Invalid weapon'
+>>>>>>> parent of 4e4ebff... Re-done locale names for commands, moved hardcoded strings to locale and added /setgroup command
 								end
 							end
 

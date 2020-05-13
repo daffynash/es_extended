@@ -54,6 +54,7 @@ Locales['fr'] = {
   ['in_vehicle'] = 'Vous ne pouvez rien donner à quelqu\'un dans un véhicule',
 
   -- Commands
+<<<<<<< HEAD
   ['command_car'] = 'faire appaitre un véhicule',
   ['command_car_car'] = 'nom ou hash du véhicule',
   ['command_cardel'] = 'supprimer le véhicule à proximité',
@@ -100,6 +101,27 @@ Locales['fr'] = {
   ['commanderror_invalidcommand'] = '^3%s^0 n\'est pas une commande valide!',
   ['commanderror_invalidplayerid'] = 'il n\'ya aucun joueur avec cet ID en jeu',
   ['commandgeneric_playerid'] = 'id joueur',
+=======
+  ['setjob'] = 'assigner job',
+  ['id_param'] = 'identification du joueur',
+  ['setjob_param2'] = 'le travail que vous souhaitez assigner',
+  ['setjob_param3'] = 'le niveau d\'emploi',
+  ['spawn_car'] = 'spawn un véhicule',
+  ['spawn_car_param'] = 'nom de la voiture',
+  ['delete_vehicle'] = 'supprimer le véhicule',
+  ['invalid_account'] = 'compte invalide',
+  ['account'] = 'compte',
+  ['giveaccountmoney'] = 'donner de l\'argent au compte',
+  ['invalid_item'] = 'item invalide',
+  ['item'] = 'article',
+  ['giveitem'] = 'donner un article',
+  ['weapon'] = 'arme',
+  ['giveweapon'] = 'donner l\'arme',
+  ['chat_clear'] = 'vider le chat',
+  ['chat_clear_all'] = 'vider le chat pour tous le monde',
+  ['command_clearinventory'] = 'effacer tout les items de l\'inventaire',
+  ['command_clearloadout'] = 'retirer toutes les armes de l\'équipement',
+>>>>>>> parent of 4e4ebff... Re-done locale names for commands, moved hardcoded strings to locale and added /setgroup command
 
   -- Locale settings
   ['locale_digit_grouping_symbol'] = ' ',

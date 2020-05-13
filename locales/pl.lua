@@ -53,6 +53,7 @@ Locales['pl'] = {
   ['in_vehicle'] = 'nie możesz przekazywać przedmiotów w pojeździe',
 
   -- Commands
+<<<<<<< HEAD
   ['command_car'] = 'przywołaj pojazd',
   ['command_car_car'] = 'nazwa lub hash przywołanego pojazdu',
   ['command_cardel'] = 'usuń pojazd w pobliżu',
@@ -99,6 +100,27 @@ Locales['pl'] = {
   ['commanderror_invalidcommand'] = '^3%s^0 nie jest poprawną komendą!',
   ['commanderror_invalidplayerid'] = 'brak dostepnego gracza pasującego do podanego id serwerowego',
   ['commandgeneric_playerid'] = 'id gracza',
+=======
+  ['setjob'] = 'przydziel prace użytkownikowi',
+  ['id_param'] = 'ID użytkownika',
+  ['setjob_param2'] = 'praca, którą chcesz przydzielić',
+  ['setjob_param3'] = 'poziom pracy',
+  ['spawn_car'] = 'sprowadź pojazd',
+  ['spawn_car_param'] = 'nazwa samochodu',
+  ['delete_vehicle'] = 'usuń pojazd',
+  ['invalid_account'] = 'błędne konto',
+  ['account'] = 'konto',
+  ['giveaccountmoney'] = 'daj pieniądze na konto',
+  ['invalid_item'] = 'nieprawidłowy przedmiot',
+  ['item'] = 'przedmiot',
+  ['giveitem'] = 'daj przedmiot',
+  ['weapon'] = 'broń',
+  ['giveweapon'] = 'daj broń',
+  ['chat_clear'] = 'wyczyść czat',
+  ['chat_clear_all'] = 'wyczyść czat dla wszystkich',
+  ['command_clearinventory'] = 'usuń wszystkie przedmioty z ekwipunku',
+  ['command_clearloadout'] = 'usuń wszystkie bronie z wyposażenia',
+>>>>>>> parent of 4e4ebff... Re-done locale names for commands, moved hardcoded strings to locale and added /setgroup command
 
   -- Locale settings
   ['locale_digit_grouping_symbol'] = ',',

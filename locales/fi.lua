@@ -54,6 +54,7 @@ Locales['fi'] = {
   ['in_vehicle'] = 'et voi antaa ajoneuvossa olevalle mitään',
 
   -- Commands
+<<<<<<< HEAD
   ['command_car'] = 'spawn an vehicle',
   ['command_car_car'] = 'vehicle spawn name or hash',
   ['command_cardel'] = 'delete vehicle in proximity',
@@ -100,6 +101,27 @@ Locales['fi'] = {
   ['commanderror_invalidcommand'] = '^3%s^0 is not an valid command!',
   ['commanderror_invalidplayerid'] = 'there is no player online matching that server id',
   ['commandgeneric_playerid'] = 'player id',
+=======
+  ['setjob'] = 'määritä työ käyttäjälle',
+  ['id_param'] = 'käyttäjän ID',
+  ['setjob_param2'] = 'työ jonka haluat määrittää',
+  ['setjob_param3'] = 'työn taso',
+  ['spawn_car'] = 'spawnaa ajoneuvo',
+  ['spawn_car_param'] = 'ajoneuvon nimi',
+  ['delete_vehicle'] = 'poistaa ajoneuvon',
+  ['invalid_account'] = 'virheellinen tunnus',
+  ['account'] = 'tunnus',
+  ['giveaccountmoney'] = 'anna tilille rahaa',
+  ['invalid_item'] = 'virheellinen itemi',
+  ['item'] = 'esine',
+  ['giveitem'] = 'anna itemi',
+  ['weapon'] = 'ase',
+  ['giveweapon'] = 'anna ase',
+  ['chat_clear'] = 'tyhjennä chatti',
+  ['chat_clear_all'] = 'tyhjennä chatti kaikilta',
+  ['command_clearinventory'] = 'clear all items from inventory',
+  ['command_clearloadout'] = 'remove all weapons from loadout',
+>>>>>>> parent of 4e4ebff... Re-done locale names for commands, moved hardcoded strings to locale and added /setgroup command
 
   -- Locale settings
   ['locale_digit_grouping_symbol'] = ' ',

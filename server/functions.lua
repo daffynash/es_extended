@@ -218,8 +218,12 @@ ESX.SavePlayer = function(xPlayer, cb)
 			['@job'] = xPlayer.job.name,
 			['@job_grade'] = xPlayer.job.grade,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			['@group'] = xPlayer.getGroup(),
 			['@loadout'] = json.encode(xPlayer.getLoadout(true)),
+=======
+			['@loadout'] = json.encode(xPlayer.getLoadout()),
+>>>>>>> parent of 4d9af4e... Improved saving loadouts (see desc)
 =======
 			['@loadout'] = json.encode(xPlayer.getLoadout()),
 >>>>>>> parent of 4d9af4e... Improved saving loadouts (see desc)

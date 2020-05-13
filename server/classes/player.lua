@@ -159,13 +159,19 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 				local newMoney = account.money + ESX.Math.Round(money)
 				account.money = newMoney
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> parent of 4d9af4e... Improved saving loadouts (see desc)
 	
 				if accountName == 'bank' then
 					self.set('bank', newMoney)
 				end
 	
+<<<<<<< HEAD
+>>>>>>> parent of 4d9af4e... Improved saving loadouts (see desc)
+=======
 >>>>>>> parent of 4d9af4e... Improved saving loadouts (see desc)
 				self.triggerEvent('esx:setAccountMoney', account)
 			end
@@ -180,13 +186,19 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 				local newMoney = account.money - ESX.Math.Round(money)
 				account.money = newMoney
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> parent of 4d9af4e... Improved saving loadouts (see desc)
 	
 				if accountName == 'bank' then
 					self.set('bank', newMoney)
 				end
 	
+<<<<<<< HEAD
+>>>>>>> parent of 4d9af4e... Improved saving loadouts (see desc)
+=======
 >>>>>>> parent of 4d9af4e... Improved saving loadouts (see desc)
 				self.triggerEvent('esx:setAccountMoney', account)
 			end
